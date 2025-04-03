@@ -26,7 +26,7 @@ A GitHub Action that analyzes pull request (PR) diffs using ChatGPT to identify 
 - **GitHub Token**: The workflow needs `issues: write` and `pull_requests: write` permissions to comment on PRs (set via `permissions` in the workflow).
 
 ## Usage
-1. Add the action to your workflow by referencing the repository and version (e.g., `yourusername/chatgpt-diff-analyzer@v1.0.0`).
+1. Add the action to your workflow by referencing the repository and version (e.g., `kubeburner/pr-analysis-action@v1.0.0`).
 2. Provide the required inputs: `diff` (path to the diff file) and `api-key` (your OpenAI API key, stored as a secret).
 3. The action will analyze the diff and output the results, which you can use to comment on the PR.
 
@@ -62,7 +62,7 @@ jobs:
 
       - name: Analyze diff with ChatGPT
         id: chatgpt
-        uses: yourusername/chatgpt-diff-analyzer@v1.0.0
+        uses: kubeburner/pr-analysis-action@v1.0.0
         with:
           diff: diff.txt
           api-key: ${{ secrets.OPENAI_API_KEY }}
