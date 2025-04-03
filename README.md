@@ -62,7 +62,7 @@ jobs:
 
       - name: Analyze diff with ChatGPT
         id: chatgpt
-        uses: kubeburner/pr-analysis-action@v1.0.0
+        uses: kubeburner/pr-analysis-action@main
         with:
           diff: diff.txt
           api-key: ${{ secrets.OPENAI_API_KEY }}
