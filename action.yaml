@@ -1,0 +1,31 @@
+name: 'ChatGPT Diff Analyzer'
+description: 'Analyzes PR diffs using ChatGPT for Kubernetes performance insights'
+inputs:
+  diff:
+    description: 'Path to the diff file (e.g., diff.txt) containing changes from the PR'
+    required: true
+  api-key:
+    description: 'OpenAI API key'
+    required: true
+outputs:
+  analysis:
+    description: 'The ChatGPT analysis of the diffs'
+    value: ${{ steps.run.outputs.analysis }}
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '16'
+    - name: Install dependencies
+      run: npm install
+      shell: bash
+      working-directory: ${{ github.action_path }}
+    - name: Run ChatGPT Analysis
+      id: run
+      run: node ${{ github.action_path }}/main.js
+      shell: bash
+      env:
+        INPUT_DIFF: ${{ inputs.diff }}
+        INPUT_API_KEY: ${{ inputs.api-key }}
